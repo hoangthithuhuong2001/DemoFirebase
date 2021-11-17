@@ -1,6 +1,7 @@
 package com.example.demofirebase.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demofirebase.R;
+import com.example.demofirebase.activity.ChiTietSanPham;
 import com.example.demofirebase.model.Sanpham;
+import com.example.demofirebase.ultil.CheckConnection;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
@@ -62,6 +65,16 @@ public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ItemHold
             txtgiasanpham = (TextView) itemView.findViewById(R.id.textviewgiasanpham);
             txttensanpham = (TextView) itemView.findViewById(R.id.textviewtensanpham);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, ChiTietSanPham.class);
+                    intent.putExtra("thongtinsanpham", arraysanpham.get(getPosition()));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    CheckConnection.ShowToast_Short(context,arraysanpham.get(getPosition()).getTensanpham());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

@@ -1,6 +1,8 @@
 package com.example.demofirebase.model;
 
-public class Sanpham {
+import java.io.Serializable;
+//nhận dữ liệu dưới dạng khuôn thêm implements Serializable
+public class Sanpham implements Serializable {
     public int ID;
     public String Tensanpham;
     public Integer Giasanpham;

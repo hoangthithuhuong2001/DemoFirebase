@@ -27,11 +27,13 @@ public class TrangdiemAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+
         return arraytrangdiem.size();
     }
 
     @Override
     public Object getItem(int i) {
+
         return arraytrangdiem.get(i);
     }
 
@@ -53,7 +55,7 @@ public class TrangdiemAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.dong_trangdiem, null);
             viewHolder.txttentrangdiem = (TextView) view.findViewById(R.id.textviewtrangdiem);
-            viewHolder.txtgiatrangdiem = (TextView) view.findViewById(R.id.textviewgiasanpham);
+            viewHolder.txtgiatrangdiem = (TextView) view.findViewById(R.id.textviewgiatrangdiem);
             viewHolder.txtmotatrangdiem = (TextView) view.findViewById(R.id.textviewmotatrangdiem);
             viewHolder.imgtrangdiem = (ImageView) view.findViewById(R.id.imageviewtrangdiem);
             view.setTag(viewHolder);

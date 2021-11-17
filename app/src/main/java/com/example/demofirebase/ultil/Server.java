@@ -6,4 +6,6 @@ public class Server {
     public static String Duongdansanphammoinhat = "http://" + localhost + "/server/getsanphammoinhat.php";
 
     public static String Duongdantrangdiem = "http://" + localhost + "/server/getsanpham.php?page=";
+    public static String Duongdanchamsoccothe = "http://" + localhost + "/server/getsanphamcsct.php?page=";
+
 }

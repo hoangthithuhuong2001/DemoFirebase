@@ -1,5 +1,6 @@
 package com.example.demofirebase.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -9,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -26,6 +29,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.demofirebase.R;
 import com.example.demofirebase.adapter.LoaispAdapter;
 import com.example.demofirebase.adapter.SanphamAdapter;
+import com.example.demofirebase.model.Giohang;
 import com.example.demofirebase.model.Loaisp;
 import com.example.demofirebase.model.Sanpham;
 import com.example.demofirebase.ultil.CheckConnection;
@@ -60,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Sanpham> mangsanpham;
     SanphamAdapter sanphamAdapter;
 
+    public static ArrayList<Giohang> manggiohang;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +85,27 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    //thêm giỏ hàng vào thanh toolbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    //bắt sự kiện cho icon giỏ hàng
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId())
+        {
+            case R.id.menugiohang:
+                Intent intent = new Intent(getApplicationContext(), GiohangActivity.class);
+                startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void CatchOnItemListView() {
@@ -127,16 +154,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
-                    case 4:
-                        if (CheckConnection.haveNetworkConnection(getApplicationContext())){
-                            Intent intent = new Intent(MainActivity.this, ThongTinActivity.class);
-                            startActivity(intent);
-                        }else{
-                            CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
 
-                        }
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
                 }
             }
         });
@@ -218,6 +236,7 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(jsonArrayRequest);
     }
 
+    //chạy hình quảng cáo trang chủ
     private void ActionViewFlipper() {
         ArrayList<String> mangquangcao = new ArrayList<>();
         mangquangcao.add("https://cellphones.com.vn/sforum/wp-content/uploads/2019/05/Honor-20-Pro-lo-anh-quang-cao-1.jpg");
@@ -272,6 +291,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewmanhinhchinh.setHasFixedSize(true);
         recyclerViewmanhinhchinh.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         recyclerViewmanhinhchinh.setAdapter(sanphamAdapter);
+
+        //nếu magnr có giữ liệu rồi thì không cần tạo mảng mới
+        if(manggiohang != null)
+        {
+
+        }else{
+            manggiohang = new ArrayList<>();
+        }
 
     }
 

@@ -1,12 +1,16 @@
 package com.example.demofirebase.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.appcompat.widget.Toolbar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toolbar;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -35,9 +39,9 @@ public class TrangdiemActivity extends AppCompatActivity {
     ListView lvdt;
     TrangdiemAdapter trangdiemAdapter;
     ArrayList<Sanpham> mangdt;
+
     int iddt = 0;
     int page = 1;
-    private Object StringRequest;
 
 
     @Override
@@ -50,6 +54,7 @@ public class TrangdiemActivity extends AppCompatActivity {
             GetIdloaisp();
             ActionToolbar();
             GetData(page);
+            LoadMoreData();
         }else{
             CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
             finish();
@@ -58,9 +63,43 @@ public class TrangdiemActivity extends AppCompatActivity {
 
     }
 
+    //thêm giỏ hàng vào thanh toolbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    //bắt sự kiện cho icon giỏ hàng
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId())
+        {
+            case R.id.menugiohang:
+                Intent intent = new Intent(getApplicationContext(), GiohangActivity.class);
+                startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+//phần chuyển qua trang chitietsp
+    private void LoadMoreData() {
+        lvdt.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), ChiTietSanPham.class);
+                intent.putExtra("thongtinsanpham", mangdt.get(i));
+                startActivity(intent);
+            }
+        });
+    }
+
     private void GetData(int Page) {
+
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        String duongdan = Server.Duongdantrangdiem + String.valueOf(Page);
+        String duongdan = Server.Duongdantrangdiem+String.valueOf(Page);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, duongdan, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -70,7 +109,8 @@ public class TrangdiemActivity extends AppCompatActivity {
                 String Hinhanhtd = "";
                 String Motatd = "";
                 int Idsptd = 0;
-                if(response != null){
+                if(response != null && response.length() > 0){
+
                     try {
                         JSONArray jsonArray = new JSONArray(response);
                         for(int i=0; i<jsonArray.length(); i++)
@@ -83,7 +123,7 @@ public class TrangdiemActivity extends AppCompatActivity {
                             Motatd = jsonObject.getString("motasp");
                             Idsptd = jsonObject.getInt("idsanpham");
                             mangdt.add(new Sanpham(id, Tentd, Giatd, Hinhanhtd,Motatd, Idsptd));
-                            trangdiemAdapter.notifyDataSetChanged();
+                            trangdiemAdapter.notifyDataSetChanged();//cập nhật lại dữ liệu
 
                         }
                     } catch (JSONException e) {
@@ -99,13 +139,15 @@ public class TrangdiemActivity extends AppCompatActivity {
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                HashMap<String, String> param = new HashMap<String, String>();
-                param.put("idsanpham", String.valueOf(iddt));
+                HashMap<String,String> param = new HashMap<String,String>();
+                param.put("idsanpham",String.valueOf(iddt));
                 return param;
             }
-        };
-        requestQueue.add(StringRequest);
 
+        };
+
+
+        requestQueue.add(stringRequest);
 
     }
 
@@ -120,19 +162,17 @@ public class TrangdiemActivity extends AppCompatActivity {
         });
     }
 
-    private void setSupportActionBar(Toolbar toolbardt) {
-    }
-
     private void GetIdloaisp() {
-        iddt = getIntent().getIntExtra("idloaisanpham", -1);
+        iddt = getIntent().getIntExtra("idloaisanpham",-1);
         Log.d("giatriloaisanpham", iddt + "");
     }
 
+
     private void Anhxa() {
-        toolbardt = (Toolbar) findViewById(R.id.toolbartrangdiem);
+        toolbardt =(Toolbar) findViewById(R.id.toolbartrangdiem);
         lvdt = (ListView) findViewById(R.id.listviewtrangdiem);
         mangdt = new ArrayList<>();
         trangdiemAdapter = new TrangdiemAdapter(getApplicationContext(), mangdt);
-
+        lvdt.setAdapter(trangdiemAdapter);
     }
 }

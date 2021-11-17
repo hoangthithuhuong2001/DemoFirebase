@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DemoFirebase">
         <activity
-            android:name=".activity.ThongTinActivity"
+            android:name=".activity.GiohangActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ChiTietSanPham"
             android:exported="false" />
         <activity
             android:name=".activity.LienHeActivity"
