@@ -239,10 +239,10 @@ public class MainActivity extends AppCompatActivity {
     //chạy hình quảng cáo trang chủ
     private void ActionViewFlipper() {
         ArrayList<String> mangquangcao = new ArrayList<>();
-        mangquangcao.add("https://cellphones.com.vn/sforum/wp-content/uploads/2019/05/Honor-20-Pro-lo-anh-quang-cao-1.jpg");
-        mangquangcao.add("https://cellphones.com.vn/sforum/wp-content/uploads/2019/05/Honor-20-Pro-lo-anh-quang-cao-3.jpg");
-        mangquangcao.add("https://static.toiimg.com/thumb/msid-69736998,width-1070,height-580,imgsize-173362,resizemode-6,overlay-toi_sw,pt-32,y_pad-40/photo.jpg");
-        mangquangcao.add("https://cdn.tgdd.vn/Files/2021/03/09/1333890/lisa3_800x450.jpg");
+        mangquangcao.add("https://lh3.googleusercontent.com/proxy/sbNryIzN6C-Z1JrM0sb5VyRVyqljdu9ftuN--YAfUQtW6mXyrk0N9r2HWNtc3DzyiyzXkoeI0UK7pX_QR2NeIZkx6h4swiCPIfEMrrl7wdbLPb78paNC2wa9teE");
+        mangquangcao.add("https://hoanphi.com/upload/news/03513978.jpg");
+        mangquangcao.add("https://nld.mediacdn.vn/thumb_w/540/2019/4/30/meo-cham-soc-da-khi-di-du-lich-vua-nhanh-vua-don-gian-hinh-9-15566003733041218561823.jpg");
+        mangquangcao.add("https://transviet.com.vn/images/Khuyen-Mai/Pictures/cam_nang_du_lich/Han-Quoc/chamsocda-transviet00.jpg");
 
         for(int i=0; i<mangquangcao.size(); i++)
         {

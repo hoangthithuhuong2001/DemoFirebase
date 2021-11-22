@@ -1,8 +1,8 @@
 <?php
 	include "connect.php";
 	$page = $_GET['page'];
-	 $idsp = $_POST['idsanpham'];
-	//$idsp = 1;
+	 //$idsp = $_POST['idsanpham'];
+	$idsp = 1;
 	
 	$space = 10;
 	$limit = ($page - 1)*$space;

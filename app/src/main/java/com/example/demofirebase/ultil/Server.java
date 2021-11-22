@@ -8,4 +8,7 @@ public class Server {
     public static String Duongdantrangdiem = "http://" + localhost + "/server/getsanpham.php?page=";
     public static String Duongdanchamsoccothe = "http://" + localhost + "/server/getsanphamcsct.php?page=";
 
+    public static String Duongdandonhang = "http://" + localhost + "/server/thongtinkhachhang.php";
+
+    public static String Duongdanchitietdonhang = "http://" + localhost + "/server/chitietdonhang.php";
 }

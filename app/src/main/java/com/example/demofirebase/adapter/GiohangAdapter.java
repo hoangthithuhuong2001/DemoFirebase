@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.demofirebase.R;
+import com.example.demofirebase.activity.GiohangActivity;
+import com.example.demofirebase.activity.MainActivity;
 import com.example.demofirebase.model.Giohang;
 import com.squareup.picasso.Picasso;
 
@@ -77,6 +79,85 @@ public class GiohangAdapter extends BaseAdapter {
                 .into(viewHolder.imggiohang);
         //đưa về  dạng chuỗi
         viewHolder.btnvalues.setText(giohang.getSoluongsp() + "");
+
+        //bắt đầu đoạn bắt sự kiện cho nút - +
+        int sl = Integer.parseInt(viewHolder.btnvalues.getText().toString());
+        if(sl >=5){
+            viewHolder.btnplus.setVisibility(view.INVISIBLE);//làm nút + mờ đi
+            viewHolder.btnminus.setVisibility(view.VISIBLE);//nút - hiệ bình thường
+        }
+        else if(sl<= 1)
+        {
+            viewHolder.btnplus.setVisibility(view.VISIBLE);//làm nút + hiệ bình thường
+            viewHolder.btnminus.setVisibility(view.INVISIBLE);//nút - mờ đi
+        }
+        else if(sl>=1)
+        {
+            viewHolder.btnminus.setVisibility(view.VISIBLE);
+            viewHolder.btnplus.setVisibility(view.VISIBLE);
+
+        }
+        //update lại giá và số lượng ở trong khung
+        ViewHolder finalViewHolder = viewHolder;
+
+        viewHolder.btnplus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int slmoinhat = Integer.parseInt(finalViewHolder.btnvalues.getText().toString()) +1;
+                int slht = MainActivity.manggiohang.get(i).getSoluongsp();
+                long giaht = MainActivity.manggiohang.get(i).getGiasp();
+                MainActivity.manggiohang.get(i).setSoluongsp(slmoinhat);
+                //tính giá mới
+                long giamoinhat = (giaht * slmoinhat)/slht;
+                MainActivity.manggiohang.get(i).setGiasp(giamoinhat);
+
+                DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+                finalViewHolder.txtgiagiohang.setText(decimalFormat.format(giamoinhat) + "Đ");
+
+                GiohangActivity.EvenUltil();
+                if(slmoinhat > 4){
+                    finalViewHolder.btnplus.setVisibility(view.INVISIBLE);
+                    finalViewHolder.btnminus.setVisibility(view.VISIBLE);
+                    finalViewHolder.btnvalues.setText(String.valueOf(slmoinhat));
+                }else{
+                    finalViewHolder.btnminus.setVisibility(view.VISIBLE);
+                    finalViewHolder.btnplus.setVisibility(view.VISIBLE);
+                    finalViewHolder.btnvalues.setText(String.valueOf(slmoinhat));
+
+                }
+
+
+            }
+        });
+        viewHolder.btnminus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int slmoinhat = Integer.parseInt(finalViewHolder.btnvalues.getText().toString()) -1;
+                int slht = MainActivity.manggiohang.get(i).getSoluongsp();
+                long giaht = MainActivity.manggiohang.get(i).getGiasp();
+                MainActivity.manggiohang.get(i).setSoluongsp(slmoinhat);
+                //tính giá mới
+                long giamoinhat = (giaht * slmoinhat)/slht;
+                MainActivity.manggiohang.get(i).setGiasp(giamoinhat);
+
+                DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+                finalViewHolder.txtgiagiohang.setText(decimalFormat.format(giamoinhat) + "Đ");
+
+                GiohangActivity.EvenUltil();
+                if(slmoinhat < 2){
+                    finalViewHolder.btnplus.setVisibility(view.VISIBLE);
+                    finalViewHolder.btnminus.setVisibility(view.INVISIBLE);
+                    finalViewHolder.btnvalues.setText(String.valueOf(slmoinhat));
+                }else{
+                    finalViewHolder.btnminus.setVisibility(view.VISIBLE);
+                    finalViewHolder.btnplus.setVisibility(view.VISIBLE);
+                    finalViewHolder.btnvalues.setText(String.valueOf(slmoinhat));
+
+                }
+
+            }
+        });
+        //kết thúc đoạn btn- và btn+
 
         return view;
     }

@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DemoFirebase">
         <activity
+            android:name=".activity.Thongtinkhachhang"
+            android:exported="false" />
+        <activity
             android:name=".activity.GiohangActivity"
             android:exported="false" />
         <activity
