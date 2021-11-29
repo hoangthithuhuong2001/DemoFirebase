@@ -44,7 +44,7 @@ public class ChiTietSanPham extends AppCompatActivity {
 
         Anhxa();
         //làm nút quay lại trang trước
-        ActionToolbar();
+        //ActionToolbar();
         //lấy dữ liệu của các màn hình khác truyền qua
         GetInformation();
         //Giới hạn đặt mỗi sản phẩm là 5
@@ -149,16 +149,16 @@ public class ChiTietSanPham extends AppCompatActivity {
 
     }
 
-    private void ActionToolbar() {
-        setSupportActionBar(toolbarctsp);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbarctsp.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-    }
+//    private void ActionToolbar() {
+//        setSupportActionBar(toolbarctsp);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        toolbarctsp.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
+//    }
 
     private void Anhxa() {
         toolbarctsp = (Toolbar) findViewById(R.id.toolbarchitietsanpham);

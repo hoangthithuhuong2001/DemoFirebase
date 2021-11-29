@@ -139,16 +139,16 @@ public class GiohangActivity extends AppCompatActivity {
         }
     }
 
-    private void ActionToolbar() {
-        setSupportActionBar(toolbargh);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbargh.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-    }
+//    private void ActionToolbar() {
+//        setSupportActionBar(toolbargh);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        toolbargh.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
+//    }
 
     private void Anhxa() {
         toolbargh = (Toolbar) findViewById(R.id.toolbargiohang);

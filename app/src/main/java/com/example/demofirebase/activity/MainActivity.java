@@ -281,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
         mangloaisp = new ArrayList<>();
 
-        mangloaisp.add(0, new Loaisp(0, "Trang chính", "https://icdn.dantri.com.vn/k:7a7517334e/2015/11/18/64-1447836433994/tu-khoa-cua-nam-la-mot-bieu-tuong-cuoi-ra-nuoc-mat.jpg"));
+        mangloaisp.add(0, new Loaisp(0, "Trang chính", "https://sites.google.com/site/khoivinhphankhoivinhseo/_/rsrc/1489649407204/noi-bat/cac-mau-tick-icon-dep/home.png"));
 
         loaispAdapter = new LoaispAdapter(mangloaisp, getApplicationContext());
         listViewmanhinhchinh.setAdapter(loaispAdapter);

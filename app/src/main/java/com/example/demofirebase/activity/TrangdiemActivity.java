@@ -52,7 +52,7 @@ public class TrangdiemActivity extends AppCompatActivity {
         Anhxa();
         if(CheckConnection.haveNetworkConnection(getApplicationContext())){
             GetIdloaisp();
-            ActionToolbar();
+            //ActionToolbar();
             GetData(page);
             LoadMoreData();
         }else{
@@ -151,16 +151,16 @@ public class TrangdiemActivity extends AppCompatActivity {
 
     }
 
-    private void ActionToolbar() {
-        setSupportActionBar(toolbardt);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbardt.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-    }
+//    private void ActionToolbar() {
+//        setSupportActionBar(toolbardt);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        toolbardt.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
+//    }
 
     private void GetIdloaisp() {
         iddt = getIntent().getIntExtra("idloaisanpham",-1);

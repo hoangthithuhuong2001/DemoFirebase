@@ -54,7 +54,7 @@ public class DochamsoccotheActivity extends AppCompatActivity {
 
         if(CheckConnection.haveNetworkConnection(getApplicationContext())){
             GetIdloaisp();
-            ActionToolbar();
+            //ActionToolbar();
             GetData(page);
             LoadMoreData();
         }else{
@@ -154,17 +154,16 @@ public class DochamsoccotheActivity extends AppCompatActivity {
         idchamsoccothe = getIntent().getIntExtra("idloaisanpham",-1);
         Log.d("giatriloaisanpham", idchamsoccothe + "");
     }
-
-    private void ActionToolbar() {
-        setSupportActionBar(toolbarcsct);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbarcsct.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-    }
+//    private void ActionToolbar() {
+//        setSupportActionBar(toolbarcsct);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        toolbarcsct.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
+//    }
 
     private void Anhxa() {
         toolbarcsct = (Toolbar) findViewById(R.id.toolbarchamsoccothe);
